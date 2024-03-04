@@ -1,3 +1,17 @@
+# Fork with hack to enable connectivity again, installation:
+
+Plugin compilation:
+
+```
+rvm pkg install openssl
+rvm install 2.7.6 --with-openssl-dir=$HOME/.rvm/usr
+rvm use 2.7.6
+bundle install
+rake package
+rvm use system
+vagrant plugin install ./virtualbox_WSL2-0.1.3.gem
+```
+
 # VirtualboxWSL2
 
 A plugin for Vagrant that fixes `vagrant up` and `vagrant ssh` when executed from WSL2.
