@@ -67,10 +67,13 @@ module VirtualboxWSL2
 
       # If we run on WSL2, we need to ssh through Windows IP, which is set as the default route
       if Vagrant::Util::Platform.wsl?
-        result = Vagrant::Util::Subprocess.execute("/bin/sh", "-c", "ip route | grep default | grep -Po '\\d+.\\d+.\\d+.\\d+'")
-        if result.exit_code == 0
-          host_ip = result.stdout.strip
-        end
+        # result = Vagrant::Util::Subprocess.execute("/bin/sh", "-c", "ip route | grep default | grep -Po '\\d+.\\d+.\\d+.\\d+'")
+        # if result.exit_code == 0
+        #  host_ip = result.stdout.strip
+        # end
+
+        # For some weird reason only access through this address works, despite my tries to enable Firewall
+        host_ip = "host.docker.internal"
       end
 
       return {
